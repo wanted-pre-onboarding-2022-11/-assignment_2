@@ -1,7 +1,8 @@
-import { Sample } from "@components";
+import React from "react";
+import Home from "./pages/Home";
 
 function App() {
-  return <Sample />;
+  return <Home />;
 }
 
 export default App;

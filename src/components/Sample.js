@@ -1,18 +1,24 @@
-import React from "react";
-import styled from "styled-components";
-
+import React, { useCallback, useContext } from "react";
+import { IssuesContext } from "../contexts/IssuesProvider";
+import IssueItem from "./IssueItem";
 const Sample = () => {
-  return <Container>Sample!</Container>;
+  const [issues, actions] = useContext(IssuesContext);
+  const getNext = useCallback(async () => {
+    actions.setNextPage();
+  }, [actions]);
+
+  return (
+    <>
+      <h1>angular / Angular-cli</h1>
+      <p>갯수 : {issues.length}</p>
+      <button onClick={getNext}>다음 데이터 가져오기</button>
+      <div>
+        {issues.map((issue) => (
+          <IssueItem key={issue.id} {...issue} />
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default Sample;
-
-const Container = styled.h1`
-  margin: 150px auto 0;
-  width: 150px;
-  height: 150px;
-  background-color: royalblue;
-  color: white;
-  font-weight: 600;
-  text-align: center;
-`;
