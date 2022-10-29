@@ -1,7 +1,18 @@
-import { Sample } from "@components";
+import React, { useEffect } from "react";
+import Router from "@routes";
+import { getIssueList } from "@apis";
+import { IssueListContextProvider } from "@utils";
 
-function App() {
-  return <Sample />;
-}
+const App = () => {
+  useEffect(() => {
+    getIssueList().then((res) => res);
+  }, []);
+
+  return (
+    <IssueListContextProvider>
+      <Router />
+    </IssueListContextProvider>
+  );
+};
 
 export default App;
