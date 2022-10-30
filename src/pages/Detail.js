@@ -16,18 +16,20 @@ const Detail = () => {
     return <h1>데이터를 불러오지 못했어요</h1>;
   }
 
-  // const {
-  //   number,
-  //   title,
-  //   body,
-  //   assignee: { avatar_url },
-  //   comments,
-  //   created_at,
-  // } = issue;
+  const { title, body, assignee, comments, created_at } = issue;
 
-  console.log(issue);
+  console.log(loading, error, issue);
 
-  return <div>Detail</div>;
+  return (
+    <>
+      <img width="100px" src={assignee?.avatar_url || ""} />
+      <div>이슈번호 : {issueNumber}</div>
+      <div>제목 : {title}</div>
+      <div>댓글 수 : {comments}</div>
+      <div>생성 일 : {created_at}</div>
+      <div>내용 : {body}</div>
+    </>
+  );
 };
 
 export default Detail;

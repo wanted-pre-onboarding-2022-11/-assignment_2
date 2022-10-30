@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const usePromise = (promiseCreatorFn, deps) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [resolved, setResolved] = useState(null);
   const [error, setError] = useState(null);
 
