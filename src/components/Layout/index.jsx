@@ -21,7 +21,9 @@ const Container = styled.div`
   width: 40rem;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   margin: 0 auto;
   padding: 1rem;
   @media screen and (max-width: 690px) {
@@ -33,6 +35,7 @@ const Title = styled.h2`
   background-color: #ff7559;
   color: #fff;
   padding: 0.5rem 0.75rem;
-  height: 2.5rem;
   border-radius: 1rem;
+  width: 100%;
+  margin-bottom: 2rem;
 `;
