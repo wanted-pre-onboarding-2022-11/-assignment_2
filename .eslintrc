@@ -13,6 +13,7 @@
   "rules": {
     "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
     "no-var": "error",
-    "eqeqeq": "error"
+    "eqeqeq": "error",
+    "no-unused-vars": "warn"
   }
 }
