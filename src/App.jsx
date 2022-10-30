@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "./pages/Home";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
-  return <Home />;
+  return <AppRouter />;
 }
 
 export default App;

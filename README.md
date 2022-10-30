@@ -9,7 +9,7 @@
 
 `@` 사용으로 경로 별칭을 사용할 수 있습니다.
 
-`Sample` 컴포넌트와 루트 경로의 `craco.config.js` 파일을 통해서 확인해보세요.
+`IssueList` 컴포넌트와 루트 경로의 `craco.config.js` 파일을 통해서 확인해보세요.
 
 ## Getting Started
 
@@ -35,4 +35,4 @@
 
 `npm install`
 
-- `Sample` 컴포넌트 등 필요없는 코드는 지우셔도 됩니다.
+- `IssueList` 컴포넌트 등 필요없는 코드는 지우셔도 됩니다.

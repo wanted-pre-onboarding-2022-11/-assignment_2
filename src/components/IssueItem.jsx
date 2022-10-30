@@ -1,3 +1,4 @@
+import React from "react";
 const IssueItem = ({ title, number, author, createdAt, comments }) => {
   return (
     <>
@@ -10,4 +11,4 @@ const IssueItem = ({ title, number, author, createdAt, comments }) => {
   );
 };
 
-export default IssueItem;
+export default React.memo(IssueItem);

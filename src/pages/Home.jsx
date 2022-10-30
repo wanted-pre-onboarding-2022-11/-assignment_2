@@ -1,8 +1,8 @@
 import React from "react";
-import Sample from "../components/Sample";
+import IssueList from "../components/IssueList";
 
 const Home = () => {
-  return <Sample />;
+  return <IssueList />;
 };
 
 export default Home;

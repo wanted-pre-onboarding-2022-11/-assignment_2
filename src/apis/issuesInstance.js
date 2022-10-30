@@ -23,7 +23,6 @@ class issueInstance {
     });
   }
 
-  //public
   getPerPage() {
     return this.#perPage;
   }
