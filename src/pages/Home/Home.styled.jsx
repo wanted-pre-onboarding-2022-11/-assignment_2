@@ -12,17 +12,6 @@ export const IssuesContainer = styled.div`
     padding: 30px;
     max-width: 700px;
   }
-
-  > div > div:last-child {
-    display: flex;
-    justify-content: center;
-  }
-`;
-
-export const Loading = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 24px;
 `;
 
 export const Notification = styled.div`
@@ -30,4 +19,9 @@ export const Notification = styled.div`
   display: flex;
   justify-content: center;
   font-size: 16px;
+`;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { IssuesContainer, Notification } from "@pages/Home/Home.styled";
+import { IssuesContainer, Notification, LoadingContainer } from "@pages/Home/Home.styled";
 import useInfinityScroll from "@hooks/useInfinityScroll";
 import { IssueItem, Error, Loading } from "@components";
 import { IssueListContext } from "@/contexts/IssueContext";
@@ -26,7 +26,13 @@ const Home = () => {
           ></IssueItem>
         ))}
         {isEndData && <Notification>더 이상 불러올 데이터가 없습니다.</Notification>}
-        <div ref={obsRef}>{isLoading && <Loading />}</div>
+        <div ref={obsRef}>
+          {isLoading && (
+            <LoadingContainer>
+              <Loading />
+            </LoadingContainer>
+          )}
+        </div>
       </div>
     </IssuesContainer>
   );
