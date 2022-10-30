@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { IssueContainer, AdvertisementContainer } from "@components/Issue/Issue.styled";
+import { IssueContainer, AdvertisementContainer } from "@components/IssueItem/IssueItem.styled";
 import { convertDay } from "@utils";
 
 const IssueItem = ({ issuenumber, title, owner, createdAt, comments, isAdvertisement }) => {
