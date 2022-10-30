@@ -22,3 +22,19 @@ export const getIssuesByPage = async (page = 1) => {
     throw new Error("fetch error.");
   }
 };
+
+export const getIssueById = async (issue_number) => {
+  try {
+    const data = await octokit.request(`GET /repos/angular/angular-cli/issues/${issue_number}`, {
+      owner: "OWNER",
+      repo: "REPO",
+      issue_number: "ISSUE_NUMBER",
+    });
+    if (data.status === 200) {
+      return data.data;
+    }
+    throw new Error("fetch error.");
+  } catch (e) {
+    throw new Error("fetch error.");
+  }
+};
