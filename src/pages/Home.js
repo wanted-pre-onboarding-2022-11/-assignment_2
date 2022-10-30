@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { IssueContext } from "../contexts/IssueContext";
+import ROUTE_PATH from "../routes/paths";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Home = () => {
   const { issues, fetchNextPage } = useContext(IssueContext);
 
   const handleClickIssue = (id) => {
-    navigate(`detail/${id}`);
+    navigate(`${ROUTE_PATH.DETAIL}/${id}`);
     setScrollHeight(window.scrollY);
   };
 
