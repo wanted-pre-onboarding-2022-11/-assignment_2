@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { IssueContext } from "@/contexts/IssueContext";
-import ROUTE_PATH from "@/routes/paths";
+import { IssueContext } from "@contexts/IssueContext";
+import ROUTE_PATH from "@routes/paths";
+import { Loading } from "@components/ui";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Home = () => {
   const { issues, fetchNextPage, loading, error } = useContext(IssueContext);
 
   const handleClickIssue = (issue) => {
-    navigate(`${ROUTE_PATH.DETAIL}/${issue.id}`);
+    navigate(`${ROUTE_PATH.DETAIL}/${issue.number}`);
     setScrollHeight(window.scrollY);
   };
 
@@ -34,7 +35,7 @@ const Home = () => {
           {issue.title}
         </li>
       ))}
-      {loading && <h1>로딩 중...</h1>}
+      {loading && <Loading />}
       <button onClick={fetchNextPage}>다음 페이지(무한스크롤)</button>
     </div>
   );

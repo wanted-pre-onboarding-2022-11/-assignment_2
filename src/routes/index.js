@@ -7,7 +7,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path={ROUTE_PATH.HOME} element={<Home />} />
-        <Route path={`${ROUTE_PATH.DETAIL}/:id`} element={<Detail />} />
+        <Route path={`${ROUTE_PATH.DETAIL}/:issueNumber`} element={<Detail />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>
