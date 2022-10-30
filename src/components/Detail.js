@@ -12,7 +12,8 @@ const Detail = () => {
   const { id } = useParams();
   useEffect(() => {
     result();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const result = async () => {
     try {
       const result = await getIssueDetail(id);
