@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { issuesAPI } from "@apis/api";
+import { getIssue } from "@apis/api";
+import { useIssuesDispatch, useIssuesState } from "@utils/IssuesContext";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -13,20 +14,17 @@ import styled from "styled-components";
 const Detail = () => {
   const { issueNumber } = useParams();
 
-  const [issue, setIssue] = useState({});
-
-  const handleGetIssue = useCallback(async () => {
-    try {
-      const { data } = await issuesAPI.getIssue(issueNumber);
-      setIssue(data);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [issueNumber]);
+  const state = useIssuesState();
+  const dispatch = useIssuesDispatch();
+  const { data: issue, loading, error } = state.issue;
 
   useEffect(() => {
-    handleGetIssue();
-  }, [handleGetIssue]);
+    getIssue(dispatch, issueNumber);
+  }, [dispatch, issueNumber]);
+
+  if (!issue) return null;
+  if (loading) return <div>Loading</div>;
+  if (error) return <div>Error</div>;
 
   return (
     <StDetailContainer>

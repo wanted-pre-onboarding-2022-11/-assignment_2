@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { issuesAPI } from "@apis/api";
+import { getIssues } from "@apis/api";
+import { useIssuesState, useIssuesDispatch } from "@utils/IssuesContext";
 
 import IssueItem from "@components/IssueItem";
 import useInfiniteScroll from "@hooks/useInfiniteScroll";
@@ -10,26 +11,23 @@ import styled from "styled-components";
 
 const Main = () => {
   const navigate = useNavigate();
-
-  const [issues, setIssues] = useState([]);
   const { page, setRef } = useInfiniteScroll();
+
+  const state = useIssuesState();
+  const dispatch = useIssuesDispatch();
+  const { data: issues, loading, error } = state.issues;
+
+  useEffect(() => {
+    getIssues(dispatch, page);
+  }, [dispatch, page]);
 
   const handleClickIssue = (issueNumber) => {
     navigate(`/issue/${issueNumber}`);
   };
 
-  const handleGetIssues = useCallback(async () => {
-    try {
-      const { data } = await issuesAPI.getIssues(page);
-      setIssues((prev) => [...prev, ...data]);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [page]);
-
-  useEffect(() => {
-    handleGetIssues();
-  }, [handleGetIssues]);
+  if (!issues) return null;
+  if (loading) return <div>Loading</div>;
+  if (error) return <div>Error</div>;
 
   return (
     <StIssuesContainer>
