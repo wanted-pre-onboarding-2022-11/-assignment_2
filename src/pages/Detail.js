@@ -18,11 +18,9 @@ const Detail = () => {
 
   const { title, body, assignee, comments, created_at } = issue;
 
-  console.log(loading, error, issue);
-
   return (
     <>
-      <img width="100px" src={assignee?.avatar_url || ""} />
+      <img width="100px" src={assignee?.avatar_url || ""} alt="user" />
       <div>이슈번호 : {issueNumber}</div>
       <div>제목 : {title}</div>
       <div>댓글 수 : {comments}</div>
