@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { ROUTH_PATH } from "@routes/routePath";
-
 import Main from "@pages/Main";
 import Detail from "@pages/Detail";
 import Error from "@pages/Error";

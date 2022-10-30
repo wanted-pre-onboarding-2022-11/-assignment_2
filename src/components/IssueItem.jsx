@@ -1,11 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
-const IssueItem = ({ issue, handleClickIssue, isRef, isAd }) => {
+const IssueItem = ({ issue, isRef, isAd }) => {
+  const navigate = useNavigate();
+
+  const handleClickIssue = () => {
+    navigate(`/issue/${issue.number}`);
+  };
+
   return (
     <>
-      <StIssueItem ref={isRef} onClick={() => handleClickIssue(issue.number)}>
+      <StIssueItem ref={isRef} onClick={handleClickIssue}>
         <div>
           <div>
             #{issue.number} {issue.title}

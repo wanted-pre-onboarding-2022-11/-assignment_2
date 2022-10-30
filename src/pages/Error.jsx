@@ -6,7 +6,7 @@ const Error = () => {
 
   return (
     <div>
-      <h1>Error</h1>
+      <h1>잘못된 접근입니다!</h1>
       <button onClick={() => navigate("/", { replace: true })}>메인으로 가기</button>
     </div>
   );

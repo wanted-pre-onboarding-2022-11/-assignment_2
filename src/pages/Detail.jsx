@@ -22,9 +22,9 @@ const Detail = () => {
     getIssue(dispatch, issueNumber);
   }, [dispatch, issueNumber]);
 
-  if (!issue) return null;
   if (loading) return <div>Loading</div>;
   if (error) return <div>Error</div>;
+  if (!issue) return null;
 
   return (
     <StDetailContainer>
