@@ -10,7 +10,7 @@ const AppRouter = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route exact path="/" element={<Home />} />
-          <Route path="detail/:id" elment={<IssueDatail />} />
+          <Route path="detail/:id" element={<IssueDatail />} />
           <Route path="*" elment={<h1>404</h1>} />
         </Route>
       </Routes>
