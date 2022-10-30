@@ -1,15 +1,13 @@
-import React, { useContext, useRef } from "react";
-import { IssuesContainer, Notification, Loading } from "@pages/Home/Home.styled";
-// import useInfinityScroll from "@hooks/useInfinityScroll";
-import { IssueItem, Error } from "@components";
+import React, { useContext } from "react";
+import { IssuesContainer, Notification } from "@pages/Home/Home.styled";
+import useInfinityScroll from "@hooks/useInfinityScroll";
+import { IssueItem, Error, Loading } from "@components";
 import { IssueListContext } from "@/contexts/IssueContext";
 
 const Home = () => {
   const { issueList, isLoading, isEndData, isError, handleNextPage } = useContext(IssueListContext);
 
-  const obsRef = useRef(null);
-
-  // useInfinityScroll(obsRef, isLoading, isEndData, handleNextPage);
+  const { obsRef } = useInfinityScroll(isLoading, isEndData, handleNextPage);
 
   if (isError) return <Error />;
 
@@ -28,7 +26,7 @@ const Home = () => {
           ></IssueItem>
         ))}
         {isEndData && <Notification>더 이상 불러올 데이터가 없습니다.</Notification>}
-        <div ref={obsRef}>{isLoading && <Loading>로딩중...</Loading>}</div>
+        <div ref={obsRef}>{isLoading && <Loading />}</div>
       </div>
     </IssuesContainer>
   );

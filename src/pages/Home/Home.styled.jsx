@@ -12,6 +12,11 @@ export const IssuesContainer = styled.div`
     padding: 30px;
     max-width: 700px;
   }
+
+  > div > div:last-child {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const Loading = styled.div`
