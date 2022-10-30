@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { IssueContext } from "../contexts/IssueContext";
-import ROUTE_PATH from "../routes/paths";
+import { IssueContext } from "@/contexts/IssueContext";
+import ROUTE_PATH from "@/routes/paths";
 
 const Home = () => {
   const navigate = useNavigate();
