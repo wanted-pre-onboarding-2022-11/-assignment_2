@@ -1,21 +1,16 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import getIssuesByPage from "@apis";
+import React from "react";
+import { useContext } from "react";
+import { IssueContext } from "../contexts/IssueContext";
 
 const Home = () => {
-  //const [page, setPage] = useState(1);
-  const [issues, setIssues] = useState([]);
-
-  useEffect(() => {
-    getIssuesByPage().then((fetchedIssues) => setIssues(fetchedIssues));
-  }, []);
+  const { issues, fetchNextPage } = useContext(IssueContext);
 
   return (
     <>
-      <button>다음</button>
       {issues.map((issue) => (
         <li key={issue.id}>{issue.title}</li>
       ))}
+      <button onClick={fetchNextPage}>다음 페이지(무한스크롤)</button>
     </>
   );
 };
