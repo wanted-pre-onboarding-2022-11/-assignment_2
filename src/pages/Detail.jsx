@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { getIssue } from "@apis/api";
 import { useIssuesDispatch, useIssuesState } from "@utils/IssuesContext";
 
+import Loading from "@components/Loading";
+import Error from "@pages/Error";
+
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -22,25 +25,27 @@ const Detail = () => {
     getIssue(dispatch, issueNumber);
   }, [dispatch, issueNumber]);
 
-  if (loading) return <div>Loading</div>;
-  if (error) return <div>Error</div>;
+  if (loading) return <Loading />;
+  if (error) return <Error />;
   if (!issue) return null;
 
   return (
     <StDetailContainer>
       <StDetailInfo>
         <div>
-          <img src={issue.user?.avatar_url} alt="avatar" width="50px" />
+          <img src={issue.user?.avatar_url} alt="avatar" />
         </div>
         <div>
-          <div>
-            #{issue.number} {issue.title}
-          </div>
-          <div>
-            작성자: {issue.user?.login} {new Date(issue.created_at).toLocaleDateString("ko-KR")}
-          </div>
+          <StItemTitle>
+            <span>#{issue.number}</span>
+            <span>{issue.title}</span>
+          </StItemTitle>
+          <StItemFooter>
+            <span>작성자: {issue.user?.login} </span>
+            <span>작성일: {new Date(issue.created_at).toLocaleDateString("ko-KR")}</span>
+          </StItemFooter>
         </div>
-        <div>{issue.comments}</div>
+        <div>코멘트: {issue.comments}개</div>
       </StDetailInfo>
 
       <ReactMarkdown
@@ -70,12 +75,70 @@ const Detail = () => {
 };
 
 const StDetailContainer = styled.div`
-  padding: 0 20px;
+  padding: 20px;
 `;
 
 const StDetailInfo = styled.div`
   display: flex;
   gap: 10px;
+
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+
+  & > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+
+    width: 15%;
+
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  & > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 70%;
+  }
+
+  & > div:nth-child(3) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 15%;
+
+    font-size: 12px;
+    text-align: end;
+  }
+`;
+
+const StItemTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  span:nth-child(1) {
+    font-size: 12px;
+  }
+
+  span:nth-child(2) {
+    margin-top: 5px;
+    font-weight: 600;
+  }
+`;
+
+const StItemFooter = styled.div`
+  display: flex;
+  gap: 5px;
+
+  span {
+    font-size: 12px;
+  }
 `;
 
 export default Detail;

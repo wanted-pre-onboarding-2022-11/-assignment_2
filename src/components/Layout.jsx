@@ -18,7 +18,7 @@ const StLayout = styled.main`
   width: 375px;
   min-height: 100vh;
 
-  background-color: aliceblue;
+  background-color: #eee;
 `;
 
 export default Layout;

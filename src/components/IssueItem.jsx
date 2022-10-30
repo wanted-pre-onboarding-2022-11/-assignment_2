@@ -14,14 +14,16 @@ const IssueItem = ({ issue, isRef, isAd }) => {
     <>
       <StIssueItem ref={isRef} onClick={handleClickIssue}>
         <div>
-          <div>
-            #{issue.number} {issue.title}
-          </div>
-          <div>
-            작성자: {issue.user.login} {new Date(issue.created_at).toLocaleDateString("ko-KR")}
-          </div>
+          <StItemTitle>
+            <span>#{issue.number}</span>
+            <span>{issue.title}</span>
+          </StItemTitle>
+          <StItemFooter>
+            <span>작성자: {issue.user.login}</span>
+            <span>작성일: {new Date(issue.created_at).toLocaleDateString("ko-KR")}</span>
+          </StItemFooter>
         </div>
-        <div>{issue.comments}</div>
+        <div>코멘트: {issue.comments}개</div>
       </StIssueItem>
 
       {isAd && (
@@ -37,11 +39,62 @@ const IssueItem = ({ issue, isRef, isAd }) => {
 };
 
 const StIssueItem = styled.div`
+  @media screen and (min-width: 1024px) {
+    height: 150px;
+  }
+
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  height: 100px;
-  border: 1px solid red;
+  height: 120px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+
+  & > div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 75%;
+    height: 100%;
+  }
+
+  & > div:nth-child(2) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 25%;
+    height: 100%;
+
+    font-size: 12px;
+    text-align: end;
+  }
+`;
+
+const StItemTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  span:nth-child(1) {
+    font-size: 12px;
+  }
+
+  span:nth-child(2) {
+    margin-top: 5px;
+    font-weight: 600;
+  }
+`;
+
+const StItemFooter = styled.div`
+  display: flex;
+  gap: 5px;
+
+  span {
+    font-size: 12px;
+  }
 `;
 
 const StAd = styled.a`

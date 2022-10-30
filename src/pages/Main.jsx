@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { getIssues } from "@apis/api";
 import { useIssuesState, useIssuesDispatch } from "@utils/IssuesContext";
 
+import Error from "@pages/Error";
+import Loading from "@components/Loading";
 import IssueItem from "@components/IssueItem";
 import useInfiniteScroll from "@hooks/useInfiniteScroll";
 
@@ -19,8 +21,8 @@ const Main = () => {
     getIssues(dispatch, page);
   }, [dispatch, page]);
 
-  if (loading) return <div>Loading</div>;
-  if (error) return <div>Error</div>;
+  if (loading) return <Loading />;
+  if (error) return <Error />;
   if (!issues) return null;
 
   return (
@@ -42,7 +44,7 @@ const StIssuesContainer = styled.div`
   flex-direction: column;
   gap: 12px;
 
-  padding: 0 20px;
+  padding: 20px;
 `;
 
 export default Main;
