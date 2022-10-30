@@ -40,21 +40,39 @@ const IssueList = () => {
   return (
     <S.IssueListWrraper>
       <S.IssueUl>
-        {issues.map((issue) => (
-          <li key={issue.id}>
-            <Link to={`detail/${issue.id}`}>
-              <IssueItem key={issue.id} {...issue} />
-            </Link>
-          </li>
-        ))}
-        {isLast.current ? (
-          <S.Wrraper>이슈가 없습니다.</S.Wrraper>
-        ) : (
-          <S.Wrraper>
-            <LoadingSpinner ref={targetRef} />
-          </S.Wrraper>
+        {issues.map((issue, index) =>
+          index === 5 ? (
+            <>
+              <li>
+                <button onClick={() => window.open("https://www.wanted.co.kr/")}>
+                  <img
+                    src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"
+                    alt="광고"
+                  ></img>
+                </button>
+              </li>
+              <li key={issue.id}>
+                <Link to={`detail/${issue.id}`}>
+                  <IssueItem key={issue.id} {...issue} />
+                </Link>
+              </li>
+            </>
+          ) : (
+            <li key={issue.id}>
+              <Link to={`detail/${issue.id}`}>
+                <IssueItem key={issue.id} {...issue} />
+              </Link>
+            </li>
+          ),
         )}
       </S.IssueUl>
+      {isLast.current ? (
+        <S.Wrraper>이슈가 없습니다.</S.Wrraper>
+      ) : (
+        <S.Wrraper>
+          <LoadingSpinner ref={targetRef} />
+        </S.Wrraper>
+      )}
     </S.IssueListWrraper>
   );
 };
@@ -72,10 +90,9 @@ const S = {
       font-size: 3rem;
     }
   `,
-  IssueUl: styled.div`
+  IssueUl: styled.ul`
     display: flex;
     flex-direction: column;
-
     align-items: center;
   `,
 };
