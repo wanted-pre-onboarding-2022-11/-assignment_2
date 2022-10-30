@@ -23,7 +23,6 @@ const S = {
     width: 100%;
     min-width: 500px;
     max-width: 500px;
-    height: 100%;
     background-color: #ffff;
     border-radius: 15px;
     padding: 5px;

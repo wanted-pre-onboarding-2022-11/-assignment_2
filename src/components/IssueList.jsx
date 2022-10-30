@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useIssuesActions, useIssuesValue } from "../contexts/IssuesProvider";
 import IssueItem from "./IssueItem";
 import LoadingSpinner from "./LoadingSpinner";
-// import LoadingSpinner from "./LoadingSpinner";
 
 const isLastPage = (data) => {
   return data.length === 0;
@@ -41,28 +40,28 @@ const IssueList = () => {
     <S.IssueListWrraper>
       <S.IssueUl>
         {issues.map((issue, index) =>
-          index === 5 ? (
-            <>
-              <li>
+          index === 4 ? (
+            <React.Fragment key={issue.id}>
+              <S.BannerLi>
                 <button onClick={() => window.open("https://www.wanted.co.kr/")}>
                   <img
                     src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"
                     alt="광고"
                   ></img>
                 </button>
-              </li>
-              <li key={issue.id}>
+              </S.BannerLi>
+              <S.IssueLi key={issue.id}>
                 <Link to={`detail/${issue.id}`}>
-                  <IssueItem key={issue.id} {...issue} />
+                  <IssueItem key={issue.id} {...issue} index={index} />
                 </Link>
-              </li>
-            </>
+              </S.IssueLi>
+            </React.Fragment>
           ) : (
-            <li key={issue.id}>
+            <S.IssueLi key={issue.id}>
               <Link to={`detail/${issue.id}`}>
-                <IssueItem key={issue.id} {...issue} />
+                <IssueItem key={issue.id} {...issue} index={index} />
               </Link>
-            </li>
+            </S.IssueLi>
           ),
         )}
       </S.IssueUl>
@@ -91,10 +90,21 @@ const S = {
     }
   `,
   IssueUl: styled.ul`
+    all: unset;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    li {
+      width: 100%;
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
   `,
+  IssueLi: styled.li``,
+  BannerLi: styled.li``,
 };
 
 export default IssueList;

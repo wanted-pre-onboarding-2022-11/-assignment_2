@@ -26,8 +26,6 @@ const S = {
     min-width: 320px;
     max-width: 640px;
 
-    li,
-    ul,
     a {
       all: unset;
     }
