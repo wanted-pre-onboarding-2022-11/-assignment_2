@@ -6,10 +6,11 @@ const headers = {
   Authorization: REACT_APP_AUTH_TOKEN,
 };
 
-export const getIssues = async () => {
+export const getIssues = async (dispatch) => {
   try {
-    return await axios.get(`${REACT_APP_API_END_POINT}`, headers);
+    const response = await axios.get(`${REACT_APP_API_END_POINT}`, headers);
+    dispatch({ type: "GET_SUCCESS", data: response.data });
   } catch (error) {
-    console.error(error);
+    dispatch({ type: "GET_ERROR", error });
   }
 };

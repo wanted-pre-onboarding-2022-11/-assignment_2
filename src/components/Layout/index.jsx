@@ -1,12 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
+import { IssuesProvider } from "../../context/IssuesProvider";
 
 function Layout() {
   return (
     <Container>
       <Title>angular/angular-cli</Title>
-      <Outlet />
+      <IssuesProvider>
+        <Outlet />
+      </IssuesProvider>
     </Container>
   );
 }
