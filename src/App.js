@@ -1,7 +1,7 @@
-import { Sample } from "@components";
+import Router from "@/routes";
 
 function App() {
-  return <Sample />;
+  return <Router />;
 }
 
 export default App;
