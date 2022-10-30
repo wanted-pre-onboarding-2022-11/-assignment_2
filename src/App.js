@@ -1,7 +1,15 @@
-import { Sample } from "@components";
+import Router from "@routes/Router";
 
-function App() {
-  return <Sample />;
-}
+import Layout from "@components/Layout";
+import Header from "@components/Header";
+
+const App = () => {
+  return (
+    <Layout>
+      <Header />
+      <Router />
+    </Layout>
+  );
+};
 
 export default App;
