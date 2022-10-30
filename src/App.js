@@ -1,7 +1,13 @@
-import { Sample } from "@components";
+import React from "react";
+import Router from "@routes";
+import { IssueListContextProvider } from "@/contexts/IssueContext";
 
 function App() {
-  return <Sample />;
+  return (
+    <IssueListContextProvider>
+      <Router />
+    </IssueListContextProvider>
+  );
 }
 
 export default App;
