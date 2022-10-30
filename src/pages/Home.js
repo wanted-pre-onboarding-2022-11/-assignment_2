@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useRef } from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { IssueContext } from "@/contexts/IssueContext";
@@ -9,11 +8,10 @@ import ROUTE_PATH from "@/routes/paths";
 const Home = () => {
   const navigate = useNavigate();
   const [scrollHeight, setScrollHeight] = useState(0);
-  const containerRef = useRef(null);
-  const { issues, fetchNextPage } = useContext(IssueContext);
+  const { issues, fetchNextPage, loading, error } = useContext(IssueContext);
 
-  const handleClickIssue = (id) => {
-    navigate(`${ROUTE_PATH.DETAIL}/${id}`);
+  const handleClickIssue = (issue) => {
+    navigate(`${ROUTE_PATH.DETAIL}/${issue.id}`);
     setScrollHeight(window.scrollY);
   };
 
@@ -25,13 +23,18 @@ const Home = () => {
     //eslint-disable-next-line
   }, []);
 
+  if (error) {
+    return <h1>에러가 발생했습니다!</h1>;
+  }
+
   return (
-    <div ref={containerRef}>
+    <div>
       {issues.map((issue) => (
-        <li onClick={handleClickIssue.bind(this, issue.id)} key={issue.id}>
+        <li key={issue.id} onClick={handleClickIssue.bind(this, issue)}>
           {issue.title}
         </li>
       ))}
+      {loading && <h1>로딩 중...</h1>}
       <button onClick={fetchNextPage}>다음 페이지(무한스크롤)</button>
     </div>
   );

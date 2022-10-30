@@ -6,7 +6,7 @@ const octokit = new Octokit({
   auth: REACT_APP_AUTH_KEY,
 });
 
-const getIssuesByPage = async (page = 1) => {
+export const getIssuesByPage = async (page = 1) => {
   try {
     const data = await octokit.request("GET /repos/angular/angular-cli/issues", {
       owner: "OWNER",
@@ -22,5 +22,3 @@ const getIssuesByPage = async (page = 1) => {
     throw new Error("fetch error.");
   }
 };
-
-export default getIssuesByPage;
