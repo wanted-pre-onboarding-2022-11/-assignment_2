@@ -7,6 +7,10 @@ const Layout = ({ children }) => {
 };
 
 const StLayout = styled.main`
+  @media screen and (min-width: 1024px) {
+    width: 768px;
+  }
+
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
