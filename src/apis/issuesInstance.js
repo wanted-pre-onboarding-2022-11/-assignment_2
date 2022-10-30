@@ -1,6 +1,5 @@
 import { createInstance } from "./createInstance";
 import { env } from "../utils/env";
-import { parseResponseDatas } from "../utils/dataParser";
 
 class issueInstance {
   //private
@@ -27,7 +26,7 @@ class issueInstance {
     return this.#perPage;
   }
 
-  getIssues() {
+  fetchIssues() {
     return this.#instance.get(`/repos/angular/angular-cli/issues`, {
       params: {
         sort: this.#sort,
@@ -36,10 +35,34 @@ class issueInstance {
       },
     });
   }
+  fetchIssue(id) {
+    return this.#instance.get(`/repos/angular/angular-cli/issues/${id}`);
+  }
+
+  parseResponseData(data) {
+    return {
+      id: data.id,
+      url: data.url,
+      number: data.number,
+      title: data.title,
+      body: data.body,
+      user: {
+        id: data.user.id,
+        login: data.user.login,
+        profileImage: data.user.avatar_url,
+      },
+      createdAt: data.created_at,
+      comments: data.comments,
+    };
+  }
+
+  parseResponseDatas(datas) {
+    return datas.map((data) => this.parseResponseData(data));
+  }
 
   async getNextPage() {
-    const { data } = await this.getIssues();
-    return parseResponseDatas(data);
+    const { data } = await this.fetchIssues();
+    return this.parseResponseDatas(data);
   }
 }
 
