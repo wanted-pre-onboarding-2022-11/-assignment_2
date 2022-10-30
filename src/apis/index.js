@@ -7,16 +7,20 @@ const octokit = new Octokit({
 });
 
 const getIssuesByPage = async (page = 1) => {
-  const data = await octokit.request("GET /repos/angular/angular-cli/issues", {
-    owner: "OWNER",
-    repo: "REPO",
-    sort: "comments",
-    page,
-  });
-  if (data.status === 200) {
-    return data.data;
+  try {
+    const data = await octokit.request("GET /repos/angular/angular-cli/issues", {
+      owner: "OWNER",
+      repo: "REPO",
+      sort: "comments",
+      page,
+    });
+    if (data.status === 200) {
+      return data.data;
+    }
+    throw new Error("fetch error.");
+  } catch (e) {
+    throw new Error("fetch error.");
   }
-  throw new Error("fetch error.");
 };
 
 export default getIssuesByPage;
